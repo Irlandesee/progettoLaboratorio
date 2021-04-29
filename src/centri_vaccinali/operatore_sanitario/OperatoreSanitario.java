@@ -1,6 +1,7 @@
 package centri_vaccinali.operatore_sanitario;
 
 import java.time.LocalDate;
+import org.json.*;
 
 public class OperatoreSanitario{
 
