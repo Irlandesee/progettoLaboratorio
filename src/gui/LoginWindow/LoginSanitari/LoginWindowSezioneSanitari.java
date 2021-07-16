@@ -96,7 +96,10 @@ public class LoginWindowSezioneSanitari extends JFrame {
                         tok = logHandler.buildToken(user_id, user_pwd); }
                     catch(NoSuchAlgorithmException exception){ exception.printStackTrace(); }
                     tok = logHandler.find(tok);
+
+                    //causa eccezione: JSONObject["dknxzvlwyhzsqiixmogk"] not found.
                     if(tok.get(user_id).equals(emptyString) && tok.get(user_pwd).equals(emptyString))
+                    //
                         System.out.println(error_user_not_found);
                     else{
                         System.out.println(tok.toString());
