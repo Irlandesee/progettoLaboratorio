@@ -80,30 +80,25 @@ public class LoginWindowSezioneSanitari extends JFrame {
 
     private class ButtonHandler implements ActionListener{
 
-        private String emptyString = "";
         private int columns_size = 20;
+        private final String emptyString = "";
         private final String user_id = "user_id";
         private final String user_pwd = "user_pwd";
         private final String error_user_not_found = "user not found!";
 
         public void actionPerformed(ActionEvent e){
             if(e.getSource().equals(login)){
-                String user_id = txt_userID.getText();
-                String user_pwd = txt_userPWD.getText();
-                if(!user_id.equals(emptyString) && !user_pwd.equals(emptyString)){
+                String user_id_inserito = txt_userID.getText();
+                String user_pwd_inserito = txt_userPWD.getText();
+                if(!user_id_inserito.equals(emptyString) && !user_pwd_inserito.equals(emptyString)){
                     JSONObject tok = new JSONObject();
                     try{
-                        tok = logHandler.buildToken(user_id, user_pwd); }
+                        tok = logHandler.buildToken(user_id_inserito, user_pwd_inserito); }
                     catch(NoSuchAlgorithmException exception){ exception.printStackTrace(); }
                     tok = logHandler.find(tok);
-
-                    //causa eccezione: JSONObject["dknxzvlwyhzsqiixmogk"] not found.
                     if(tok.get(user_id).equals(emptyString) && tok.get(user_pwd).equals(emptyString))
-                    //
                         System.out.println(error_user_not_found);
-                    else{
-                        System.out.println(tok.toString());
-                    }
+                    else{ System.out.println(tok.toString()); }
                 }
                 resetFields();
             }

@@ -15,8 +15,19 @@ public class LoginHandler {
     private final String userPwd = "user_pwd";
     private final String pathname = "users/users.csv";
 
-    public LoginHandler(){
+    private LinkedList<JSONObject> jsonObjList;
 
+    public LoginHandler(){
+        jsonObjList = readFromFile();
+    }
+
+    private LinkedList<JSONObject> getList(){
+        return jsonObjList;
+    }
+
+    private void refreshList(){
+        jsonObjList = readFromFile();
+        System.out.println("List refreshed");
     }
 
     private String bytesToHex(byte[] hash){
@@ -34,8 +45,7 @@ public class LoginHandler {
     public String generateHash(String s) throws NoSuchAlgorithmException{
         MessageDigest digest = MessageDigest.getInstance("SHA3-256");
         byte[] hashBytes = digest.digest(s.getBytes(StandardCharsets.UTF_8));
-        String sha3hex = bytesToHex(hashBytes);
-        return sha3hex;
+        return bytesToHex(hashBytes);
     }
 
     public JSONObject buildToken(String user, String pwd) throws NoSuchAlgorithmException{
@@ -135,23 +145,8 @@ public class LoginHandler {
     public JSONObject find(JSONObject obj){
         LinkedList<JSONObject> l = readFromFile();
 
-        String user_id = (String) obj.get(userID);
-        String user_pwd = (String) obj.get(userPwd);
-
-        System.out.println(user_id);
-        System.out.println(user_pwd);
-
         for(JSONObject temp : l){
-
-            String tempUser_id = temp.get(userID).toString();
-            String tempUser_pwd = temp.get(userPwd).toString();
-
-            if(tempUser_id.equals(user_id) && tempUser_pwd.equals(user_pwd)){
-                System.out.println("********************+ Found User ********************");
-                System.out.println("Nome:" +temp.get("nome"));
-                System.out.println("Cognome: "+temp.get("cognome"));
-                System.out.println("********************+ Found User ********************");
-                //prova
+            if(compareTokens(temp, obj)) {
                 System.out.println(temp.toString());
                 return temp;
             }
@@ -161,7 +156,7 @@ public class LoginHandler {
         JSONObject ris = new JSONObject();
         ris.put(userID, "");
         ris.put(userPwd, "");
-
+        System.out.println("User not found");
         return ris;
     }
 

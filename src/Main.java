@@ -57,6 +57,18 @@ public class Main {
 
         LoginHandler logHandler = new LoginHandler();
 
+        /**
+        String my_user_id = "mmlunardi";
+        String my_user_pwd = "lnrmtm97";
+
+        String hash_my_userID = logHandler.generateHash(my_user_id);
+        String hash_my_userPWD = logHandler.generateHash(my_user_pwd);
+
+        System.out.println("My hashed user id: " +hash_my_userID);
+        System.out.println("My hashed user pwd: " +hash_my_userPWD);
+
+         **/
+
         //LinkedList<JSONObject> users = new LinkedList<JSONObject>();
 
         //generating 1000 users
