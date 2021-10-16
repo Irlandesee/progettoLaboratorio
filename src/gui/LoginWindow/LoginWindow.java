@@ -1,4 +1,4 @@
-package gui.LoginWindow.LoginSanitari;
+package gui.LoginWindow;
 
 import java.awt.*;
 import javax.swing.*;
@@ -8,7 +8,7 @@ import java.security.NoSuchAlgorithmException;
 import loginhandler.LoginHandler;
 import org.json.JSONObject;
 
-public class LoginWindowSezioneSanitari extends JFrame {
+public class LoginWindow extends JFrame{
 
     private Container cont;
     private GridBagLayout grdbagLayout;
@@ -16,6 +16,7 @@ public class LoginWindowSezioneSanitari extends JFrame {
 
     private JLabel lbl_userID;
     private JLabel lbl_userPWD;
+
     private JTextField txt_userID;
     private JTextField txt_userPWD;
 
@@ -24,8 +25,8 @@ public class LoginWindowSezioneSanitari extends JFrame {
 
     private LoginHandler logHandler;
 
-    public LoginWindowSezioneSanitari(){
-        super("Accesso Sezione Operatori Sanitari");
+    public LoginWindow(String windowName){
+        super(windowName);
         createInterface();
 
         this.setSize(400, 400);
@@ -37,7 +38,6 @@ public class LoginWindowSezioneSanitari extends JFrame {
         grdbagLayout = new GridBagLayout();
         cont.setLayout(grdbagLayout);
 
-        //instantiang constraints
         grdConstraints = new GridBagConstraints();
         grdConstraints.fill = GridBagConstraints.BOTH;
 
@@ -64,7 +64,6 @@ public class LoginWindowSezioneSanitari extends JFrame {
 
         //initializing login handler
         logHandler = new LoginHandler();
-
 
     }
 
@@ -98,7 +97,7 @@ public class LoginWindowSezioneSanitari extends JFrame {
                     tok = logHandler.find(tok);
                     if(tok.get(user_id).equals(emptyString) && tok.get(user_pwd).equals(emptyString))
                         System.out.println(error_user_not_found);
-                    else{ System.out.println(tok.toString()); }
+                    else{ System.out.println(tok); }
                 }
                 resetFields();
             }
@@ -112,14 +111,6 @@ public class LoginWindowSezioneSanitari extends JFrame {
             txt_userID.setColumns(columns_size);
             txt_userPWD.setText(emptyString);
             txt_userPWD.setColumns(columns_size);
-        }
-
-    }
-
-    private class TextFieldHandler implements ActionListener{
-
-        public void actionPerformed(ActionEvent e){
-
         }
 
     }

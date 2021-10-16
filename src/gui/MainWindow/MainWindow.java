@@ -4,7 +4,8 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.event.MenuListener;
 import java.awt.event.*;
-import gui.LoginWindow.LoginSanitari.LoginWindowSezioneSanitari;
+
+import gui.LoginWindow.LoginWindow;
 
 public class MainWindow extends JFrame{
 
@@ -63,11 +64,11 @@ public class MainWindow extends JFrame{
         public void actionPerformed(ActionEvent e){
             if(e.getSource().equals(btn_sanitari)){
                 System.out.println("Sanitari");
-                new LoginWindowSezioneSanitari();
+                new LoginWindow("Sanitari login window");
             }
             else if(e.getSource().equals(btn_cittadini)){
                 System.out.println("Cittadini");
-
+                new LoginWindow("Cittadini login window");
             }
             else if(e.getSource().equals(btn_nuovoUtente)){
                 System.out.println("Nuovo utente");
