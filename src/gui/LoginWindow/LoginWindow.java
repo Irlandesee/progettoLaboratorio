@@ -95,9 +95,14 @@ public class LoginWindow extends JFrame{
                         tok = logHandler.buildToken(user_id_inserito, user_pwd_inserito); }
                     catch(NoSuchAlgorithmException exception){ exception.printStackTrace(); }
                     tok = logHandler.find(tok);
-                    if(tok.get(user_id).equals(emptyString) && tok.get(user_pwd).equals(emptyString))
-                        System.out.println(error_user_not_found);
-                    else{ System.out.println(tok); }
+                    if(tok.get(user_id).equals(emptyString) && tok.get(user_pwd).equals(emptyString)) {
+                        String infoMessage = "user non trovato / password sbagliata";
+                        JOptionPane.showMessageDialog(null, infoMessage, "user not found", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else{
+                        System.out.println(tok);
+                        //if(e.getSource().equals())
+                    }
                 }
                 resetFields();
             }

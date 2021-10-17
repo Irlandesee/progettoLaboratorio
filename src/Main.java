@@ -1,3 +1,5 @@
+import gui.sanitari.RegistrazioneCentroVaccinaleWindow;
+import gui.sanitari.SanitariMainWindow;
 import org.json.*;
 import loginhandler.LoginHandler;
 import gui.MainWindow.MainWindow;
@@ -91,7 +93,10 @@ public class Main {
         }**/
 
         //testing gui
-        MainWindow mainWindow = new MainWindow();
+        //MainWindow mainWindow = new MainWindow();
+
+        //new SanitariMainWindow();
+        new RegistrazioneCentroVaccinaleWindow();
 
     }
 
