@@ -1,9 +1,12 @@
 package gui.sanitari;
 
+import centri_vaccinali.CentroVaccinale;
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.event.MenuListener;
 import java.awt.event.*;
+import java.util.Objects;
 
 public class RegistrazioneCentroVaccinaleWindow extends JFrame{
 
@@ -123,10 +126,46 @@ public class RegistrazioneCentroVaccinaleWindow extends JFrame{
         public void actionPerformed(ActionEvent e){
             if(e.getSource().equals(btn_add)){
                 System.out.println("add centro vaccinale");
+                CentroVaccinale cv;
+                String text = "";
+                String tipologia = "";
+                String nomeCentroVaccinale = "";
+                String via = "";
+                String nomeVia = "";
+                String comune = "";
+                String siglaProvincia = "";
+                int numeroCivico = -1;
+                int cap = -1;
+
+                if(!((text = txt_nome_centro_vaccinale.getText()).isBlank()))
+                    nomeCentroVaccinale = text;
+                if(!((text = txt_nome_via.getText()).isBlank()))
+                    nomeVia = text;
+                if(!((text = txt_comune.getText()).isBlank()))
+                    comune = text;
+                if(!((text = txt_sigla_provincia.getText()).isBlank()))
+                    siglaProvincia = text;
+                if(!((text = txt_numero_civico.getText()).isBlank()))
+                    numeroCivico = Integer.parseInt(text);
+                if(!((text = txt_cap.getText()).isBlank()))
+                    cap = Integer.parseInt(text);
+
+                tipologia = combo_tipologia.getItemAt(combo_tipologia.getSelectedIndex()).toString();
+                via = combo_qualificatoriVia.getItemAt(combo_qualificatoriVia.getSelectedIndex()).toString();
+
+                cv = new CentroVaccinale(nomeCentroVaccinale, nomeVia, comune, siglaProvincia, cap, numeroCivico,
+                tipologia, via);
+
+                System.out.println("Centro vaccinale:\n"+cv);
+
             }
             else if(e.getSource().equals(btn_reset)){
                 System.out.println("reset campi");
             }
+        }
+
+        private void resetTextFields(){
+
         }
 
     }

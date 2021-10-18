@@ -24,6 +24,10 @@ public class CentroVaccinale {
     private int cap;
     private int numeroCivico;
 
+    private qualificatoreIndirizzo quali;
+    private tipologia tipo;
+
+
     public CentroVaccinale(){}
 
     public CentroVaccinale(String nomeCentroVaccinale, String nomeVia, String comune, String siglaProvincia, int cap,
@@ -34,7 +38,8 @@ public class CentroVaccinale {
         this.siglaProvincia = siglaProvincia;
         this.cap = cap;
         this.numeroCivico = numeroCivico;
-
+        this.setTipologia(tipologia);
+        this.setQualificatore(qualificatoreIndirizzo);
     }
 
     public String getNomeCentroVaccinale() {
@@ -88,13 +93,13 @@ public class CentroVaccinale {
     private void setQualificatore(String qualificatore){
         switch(qualificatore){
             case "via":
-                qualificatoreIndirizzo q = qualificatoreIndirizzo.via;
+                quali = qualificatoreIndirizzo.via;
                 break;
             case "viale":
-                qualificatoreIndirizzo qI = qualificatoreIndirizzo.viale;
+                quali = qualificatoreIndirizzo.viale;
                 break;
             case "piazza":
-                qualificatoreIndirizzo tmp = qualificatoreIndirizzo.piazza;
+                quali = qualificatoreIndirizzo.piazza;
                 break;
         }
     }
@@ -102,20 +107,48 @@ public class CentroVaccinale {
     private void setTipologia(String t){
         switch(t){
             case "ospedale":
-                tipologia tip = tipologia.ospedale;
+                tipo = tipologia.ospedale;
                 break;
             case "hub":
-                tipologia tmp = tipologia.hub;
+                tipo = tipologia.hub;
                 break;
             case "aziendale":
-                tipologia temp = tipologia.aziendale;
+                tipo = tipologia.aziendale;
+                break;
         }
     }
 
     public String toString(){
-        return "Nome Centro vaccinale: " +"\nTipologia: " + Arrays.toString(tipologia.values()) + "\nIndirizzo"
-                + Arrays.toString(qualificatoreIndirizzo.values()) + this.nomeVia + this.numeroCivico +
-                "\nComune:"+ this.comune +"\nProvincia: " + this.siglaProvincia + "\nCap:" +this.cap;
+        StringBuilder builder = new StringBuilder();
+        builder.append(this.getNomeCentroVaccinale());
+        builder.append(" ");
+        //tipologia
+        if(this.tipo.equals(tipologia.hub))
+            builder.append("hub");
+        else if(this.tipo.equals(tipologia.ospedale))
+            builder.append("ospedale");
+        else
+            builder.append("aziendale");
+        builder.append(" ");
+        //qualificatore indirizzo
+        if(this.quali.equals(qualificatoreIndirizzo.via))
+            builder.append("via");
+        else if(this.quali.equals(qualificatoreIndirizzo.viale))
+            builder.append("viale");
+        else
+            builder.append("piazza");
+        builder.append(" ");
+        builder.append(this.getNomeVia());
+        builder.append(" ");
+        builder.append(this.getNumeroCivico());
+        builder.append(" ");
+        builder.append(this.getComune());
+        builder.append(" ");
+        builder.append(this.getSiglaProvincia());
+        builder.append(" ");
+        builder.append(this.getCap());
+
+        return builder.toString();
     }
 
 }
