@@ -4,15 +4,9 @@ import centri_vaccinali.CentroVaccinale;
 
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.event.MenuListener;
 import java.awt.event.*;
-import java.util.Objects;
 
 public class RegistrazioneCentroVaccinaleWindow extends JFrame{
-
-    /**
-     * Indirizzo: via/viale/piazza, nome, numero_civico, comune, sigla_provincia, cap
-     */
 
     private Container cont;
     private GridBagLayout grdbagLayout;
@@ -161,18 +155,24 @@ public class RegistrazioneCentroVaccinaleWindow extends JFrame{
             }
             else if(e.getSource().equals(btn_reset)){
                 System.out.println("reset campi");
+                resetTextFields();
             }
         }
 
         private void resetTextFields(){
-
+            txt_nome_centro_vaccinale.setText("");
+            txt_nome_via.setText("");
+            txt_comune.setText("");
+            txt_sigla_provincia.setText("");
+            txt_numero_civico.setText("");
+            txt_cap.setText("");
+            combo_tipologia.setSelectedIndex(0);
+            combo_qualificatoriVia.setSelectedIndex(0);
         }
 
     }
 
     private class TextFieldHandler implements ActionListener{
-
-        private final String newLine = "\n";
 
         public void actionPerformed(ActionEvent e){
             if(e.getSource().equals(txt_numero_civico)){
@@ -239,5 +239,11 @@ public class RegistrazioneCentroVaccinaleWindow extends JFrame{
         }
 
     }
+
+    /**
+     * TO DO:
+     * aggiungere check che ci siano tutti i parametri
+     *
+     */
 
 }
